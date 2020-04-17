@@ -6,9 +6,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf build && cd ../FullStack/osa3/puhelinluettelo && yarn build && cp -r build ../../../FullStack-Backend/public",
+    "build:ui": "rm -rf build && cd ../FullStack/osa3/puhelinluettelo && yarn build && cp -r build ../../../FullStack-Backend/build",
     "deploy": "git push heroku master",
-    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy",    
+    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy && heroku logs --tail",    
     "logs:prod": "heroku logs --tail"
   },
   "license": "MIT",
