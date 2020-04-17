@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../FullStack/osa3/puhelinluettelo && yarn build && cp -r build ../../../FullStack-Backend/public",
     "deploy": "git push heroku master",
-    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && git push && yarn deploy",    
+    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy",    
     "logs:prod": "heroku logs --tail"
   },
   "license": "MIT",
