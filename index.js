@@ -1,10 +1,17 @@
 require('dotenv').config()
+
+console.log(process.env.PORT)
+console.log(process.env.MONGODB_URI)
+
+
 const express = require("express")
 const app = express()
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
 const cors = require('cors')
 const Person = require('./models/person')
+
+
 
 let persons = [
   {
