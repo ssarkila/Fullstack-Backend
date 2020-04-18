@@ -105,12 +105,11 @@ app.post("/api/persons", (request, response) => {
 
   const newPerson = new Person({
     name: body.name,
-    number: body.number,
-    id: randomIntFromInterval(10, 10000000)
+    number: body.number
   })
 
-  newPerson.save().then(savedNote => {
-    response.json(savedNote.toJSON())
+  newPerson.save().then(savedPerson => {
+    response.json(savedPerson.toJSON())
   })
 })
 
