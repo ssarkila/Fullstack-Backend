@@ -1,8 +1,10 @@
-const express = require("express");
-const app = express();
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
+require('dotenv').config()
+const express = require("express")
+const app = express()
+const morgan = require("morgan")
+const bodyParser = require("body-parser")
 const cors = require('cors')
+const Person = require('./models/note')
 
 let persons = [
   {
@@ -46,8 +48,10 @@ app.get("/api/info", (req, res) => {
   );
 });
 
-app.get("/api/persons", (req, res) => {
-  res.json(persons);
+app.get("/api/persons", (request, response) => {
+  Person.find({}).then(persons => {
+    response.json(persons.map(person => person.toJSON()))
+  })
 });
 
 app.get("/api/persons/:id", (request, response) => {
@@ -69,7 +73,7 @@ app.delete("/api/persons/:id", (request, response) => {
   } else {
     response.status(404).end();
   }
-});
+})
 
 app.post("/api/persons", (request, response) => {
   const body = request.body;
@@ -82,13 +86,13 @@ app.post("/api/persons", (request, response) => {
 
     return response.status(400).json({
       error: `name${extra} missing`,
-    });
+    })
   }
 
   if (!body.number || body.number.length === 0) {
     return response.status(400).json({
       error: "number missing",
-    });
+    })
   }
 
   const person = persons.find((p) => p.name === body.name)
@@ -96,23 +100,24 @@ app.post("/api/persons", (request, response) => {
   if (person) {
     return response.status(400).json({
       error: "name must be unique",
-    });
+    })
   }
 
-  const newPerson = {
+  const newPerson = new Person({
     name: body.name,
     number: body.number,
     id: randomIntFromInterval(10, 10000000)
-  };
+  })
 
-  persons = persons.concat(newPerson);
-  response.json(newPerson);
-});
+  newPerson.save().then(savedNote => {
+    response.json(savedNote.toJSON())
+  })
+})
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
+})
 
 const randomIntFromInterval = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);

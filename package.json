@@ -8,14 +8,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../FullStack/osa3/puhelinluettelo && yarn build && cp -r build ../../../FullStack-Backend/build",
     "deploy": "git push heroku master",
-    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy && heroku logs --tail",    
+    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy && heroku logs --tail",
     "logs:prod": "heroku logs --tail"
   },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongoose": "^5.9.9",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
