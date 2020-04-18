@@ -4,7 +4,7 @@ const app = express()
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
 const cors = require('cors')
-const Person = require('./models/note')
+const Person = require('./models/person')
 
 let persons = [
   {
