@@ -20,10 +20,10 @@ app.use(
   morgan(':method :url :status :res[content-length] - :response-time ms :body')
 )
 
-app.get('/api/info', (_req, res, next) => {
+app.get('/api/info', (request, response, next) => {
   Person.find({})
     .then(persons => {
-      res.send(
+      response.send(
         `<p>Phonebook has info for ${persons.length} people</p><p>${new Date()}</p>`
       )
     })
