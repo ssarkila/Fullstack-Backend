@@ -9,7 +9,8 @@
     "build:ui": "rm -rf build && cd ../FullStack/osa3/puhelinluettelo && yarn build && cp -r build ../../../FullStack-Backend/build",
     "deploy": "git push heroku master",
     "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy && heroku logs --tail",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "license": "MIT",
   "dependencies": {
@@ -22,6 +23,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.3"
   }
 }
