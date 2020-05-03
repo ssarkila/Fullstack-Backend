@@ -13,6 +13,7 @@ const url =
 */
 const url = process.env.MONGODB_URI
 
+console.log('useCreateIndex')
 mongoose.set('useCreateIndex', true);
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
